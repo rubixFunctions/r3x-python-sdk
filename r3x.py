@@ -19,27 +19,29 @@ def execute(r3xFunc):
             if ctype != 'application/json':
                 self.send_response(400)
                 self.end_headers()
+                self.wfile.write("Wrong Header Set, Request Body Needs to be JSON")
                 return
 
             length = int(self.headers.getheader('content-length'))
-            
-            if length > 0:
-                message = json.dumps(json.loads(self.rfile.read(length)))
-            else:
-                res = {'rubix' : 'no request body found'}
-                json_res = json.dumps(res)
-                message = json_res
-                
-            
+         
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(r3xFunc(message))
+            self.wfile.write(r3xFunc(json_handler(length, self.rfile.read(length))))
+    
+    def json_handler(length, body):
+        if length > 0:
+            return json.dumps(json.loads(body))
+        else:
+            res = {'rubix' : 'no request body found'}
+            json_res = json.dumps(res)
+            return json_res
+        
         
     def run(server_class=HTTPServer, handler_class=RubiXServer, port=int(PORT)):
         server_address = ('', port)
         httpd = server_class(server_address, handler_class)
-        print 'Starting httpd...'
+        print 'Starting httpd...on port {}'.format(PORT)
         httpd.serve_forever()
 
     run()
