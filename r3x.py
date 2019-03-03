@@ -12,21 +12,34 @@ def execute(r3xFunc):
         print("PORT environment variable was not set, r3x exit")
         return
 
-    class RubiXServer(BaseHTTPRequestHandler):        
+    class RubiXServer(BaseHTTPRequestHandler):   
+        def _set_headers(self):
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+
+        def _set_header_error_header(self):
+            self.send_response(400)
+            self.end_headers()
+            self.wfile.write("Wrong Header Set, Request Body Needs to be JSON")
+
+        def _set_error_header(self):
+            self.send_response(400)
+            self.end_headers()
+        
+        def do_HEAD(self):
+            self._set_headers()
+
         def do_POST(self):
             ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
             
             if ctype != 'application/json':
-                self.send_response(400)
-                self.end_headers()
-                self.wfile.write("Wrong Header Set, Request Body Needs to be JSON")
+                self._set_header_error_header()
                 return
 
             length = int(self.headers.getheader('content-length'))
          
-            self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
+            self._set_headers()
             self.wfile.write(r3xFunc(json_handler(length, self.rfile.read(length))))
     
     def json_handler(length, body):
