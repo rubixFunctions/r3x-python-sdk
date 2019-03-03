@@ -1,6 +1,8 @@
 import r3x
 import json
 
+# This file is for quick local testing of SDK
+
 def r3xFunc(input):
     i = json.loads(input)
     for key,value in i.items():
