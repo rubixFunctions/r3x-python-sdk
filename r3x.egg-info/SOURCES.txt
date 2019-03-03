@@ -1,8 +1,0 @@
-README.md
-setup.py
-r3x/__init__.py
-r3x/r3x.py
-r3x.egg-info/PKG-INFO
-r3x.egg-info/SOURCES.txt
-r3x.egg-info/dependency_links.txt
-r3x.egg-info/top_level.txt
