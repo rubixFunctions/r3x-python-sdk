@@ -1,10 +1,14 @@
 import r3x
 import json
 
-def r3xFunc():
-    res = {'message' : 'hello r3x'}
+def r3xFunc(input):
+    i = json.loads(input)
+    for key,value in i.items():
+        if str(key) == "name":
+            res = {"message": "hello {}".format(value)}
+        else:
+            res = {"message" : "hello r3x"}
     json_res = json.dumps(res)
-    print (json_res)
     return json_res
 
 if __name__ == "__main__":  
