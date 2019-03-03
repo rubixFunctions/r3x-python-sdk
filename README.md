@@ -25,6 +25,11 @@ def r3xFunc(input):
 if __name__ == "__main__":  
     r3x.execute(r3xFunc)
 ```
+To run locally you will need to set an environment variable for the `PORT`
+```
+$ export PORT=8080
+```
+Once done, execute your code.
 
 ## Documentation
 For full information on how to use the SDK and deploy a function to Knative, refer to our [Documentation here.](https://github.com/rubixFunctions/r3x-docs/blob/master/README.md)
