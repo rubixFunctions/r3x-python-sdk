@@ -5,7 +5,7 @@
 ## Usage
 Install Package from PyPi
 ```
-$ python -m pip install --index-url https://test.pypi.org/project/r3x-python-sdk/ --no-deps r3x-python-sdk   
+$ python -m pip install -i https://test.pypi.org/simple/ r3x --user  
 ```
 With the package installed, import `r3x`. Once imported define a function which returns a `JSON` response. Your function will receive the request body as a json parameter. Finally pass your function to `r3x.execute(your_func)`. The following is an example of using the SDK
 ```

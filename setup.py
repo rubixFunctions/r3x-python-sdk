@@ -6,8 +6,8 @@ with open("README.md", "r") as fh:
 
 # This call to setup() does all the work
 setuptools.setup(
-    name="r3x-python-sdk",
-    version="0.0.2",
+    name="r3x",
+    version="0.0.4",
     description="RubiX Python SDK",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -18,6 +18,7 @@ setuptools.setup(
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 3",
     ],
     packages=["r3x"],
     include_package_data=True,
